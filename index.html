@@ -1,5 +1,27 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+      #cadastro_filme {
+        display: flex;
+        align-items: center;
+        flex-flow: column wrap;
+        gap: 10px;
+      }
+
+      #cadastro_filme label {
+        margin-right: 5px;
+      }
+
+      #titulo_filme, #nota {
+        margin-bottom: 10px; 
+      }
+
+      #input {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+      }
+    </style>
     <link rel="icon" href="http://ia.media-imdb.com/images/G/01/imdb/images/favicon-2165806970._CB522736556_.ico">
     <title>Filmes</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -22,4 +44,21 @@
         </ul>
       </div>
     </div>
+    <div class="container">
+      <div class="jumbotron">
+        <form action="novo_filme">
+          <div id="cadastro_filme"> 
+            <div class="input">
+              <label for="titulo_filme">Título do filme</label>
+              <label for="nota">Nota do filme</label><br>
+            </div>
+            <div class="input">
+              <input type="text" id="titulo_filme">
+              <input type="number" id="nota">
+            </div>
+            <button type="submit">Cadastrar</button>
+          </div>
+        </form>
+      </div> 
+    </div>    
 </body></html>

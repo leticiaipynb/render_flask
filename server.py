@@ -1,7 +1,6 @@
 import os
 import psycopg2
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 def get_db_connection():
@@ -42,6 +41,21 @@ def index():
         """ % (movie['rating'], movie['name'])
        
     return open('index.html').read()  % (html)
+
+@app.route('/novo_filme', methods=['POST'])
+def novo_filme():
+    if request.method == 'POST':
+        titulo = request.form['titulo_filme']
+        nota = request.form['nota']
+
+        # Conectar ao banco de dados e inserir os dados
+        conn = get_db_connection()
+        conn.execute('INSERT INTO movies (name, rating) VALUES (?, ?)',
+                     (titulo, nota))
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
